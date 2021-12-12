@@ -114,8 +114,23 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     Character_Direction = [-1, 0]
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite6, otherSprite4) {
-    otherSprite4.destroy(effects.bubbles, 100)
+    otherSprite4.destroy(effects.bubbles, 500)
     Shark_Status_Bar_Health.value += 5
+    if (Character_Direction[0] == -1 || Character_Direction[1] == -1) {
+        animation.runImageAnimation(
+        Main_Character,
+        assets.animation`sharkAttackLeft`,
+        100,
+        false
+        )
+    } else {
+        animation.runImageAnimation(
+        Main_Character,
+        assets.animation`sharkAttackRight`,
+        100,
+        false
+        )
+    }
 })
 info.onCountdownEnd(function () {
     controller.moveSprite(Main_Character, 23, 23)
