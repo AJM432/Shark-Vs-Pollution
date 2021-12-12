@@ -62,7 +62,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Final_Boss, function (sprite
         `, SpriteKind.Minion)
     Minions.setPosition(Final_Boss.x, Final_Boss.y)
     Minions.follow(Main_Character, 10)
-    Final_Boss_Health_Status_Bar.value += -20
+    Final_Boss_Health_Status_Bar.value += -10
     if (Final_Boss_Health_Status_Bar.value <= 0) {
         game.over(true, effects.confetti)
     }
