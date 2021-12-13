@@ -64,6 +64,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Final_Boss, function (sprite
     Minions.follow(Main_Character, 10)
     Final_Boss_Health_Status_Bar.value += -10
     if (Final_Boss_Health_Status_Bar.value <= 0) {
+        game.splash("Time:", "" + game.runtime() / 1000 + "(s)")
         game.over(true, effects.confetti)
     }
 })
@@ -237,7 +238,7 @@ Shark_Status_Bar_Health.attachToSprite(Main_Character)
 Shark_Status_Bar_Health.value = 100
 Shark_Status_Bar_Health.setStatusBarFlag(StatusBarFlag.SmoothTransition, true)
 Mini_Boss_Kill_Count = 0
-game.showLongText("Fight", DialogLayout.Bottom)
+game.showLongText("PLAY", DialogLayout.Bottom)
 game.onUpdateInterval(2000, function () {
     if (Playing == 1) {
         Random_Number = randint(0, 10)
