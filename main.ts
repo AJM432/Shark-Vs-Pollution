@@ -17,13 +17,13 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Missile, function (sprite, other
 sprites.onDestroyed(SpriteKind.Boss, function (sprite5) {
     Mini_Boss_Kill_Count += 1
     if (Mini_Boss_Kill_Count == 5) {
-        Final_Boss = sprites.create(assets.image`Final Boss`, SpriteKind.Final_Boss)
-        Final_Boss.setPosition(scene.screenWidth(), randint(0, scene.screenHeight()))
-        Final_Boss.follow(Main_Character, 5)
-        Final_Boss.setStayInScreen(true)
-        Final_Boss.setBounceOnWall(true)
+        Final_Boss2 = sprites.create(assets.image`Final Boss`, SpriteKind.Final_Boss)
+        Final_Boss2.setPosition(scene.screenWidth(), randint(0, scene.screenHeight()))
+        Final_Boss2.follow(Main_Character, 5)
+        Final_Boss2.setStayInScreen(true)
+        Final_Boss2.setBounceOnWall(true)
         Final_Boss_Health_Status_Bar = statusbars.create(20, 4, StatusBarKind.EnemyHealth)
-        Final_Boss_Health_Status_Bar.attachToSprite(Final_Boss)
+        Final_Boss_Health_Status_Bar.attachToSprite(Final_Boss2)
         Final_Boss_Health_Status_Bar.value = 100
     }
     Boss_Active = false
@@ -60,7 +60,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Final_Boss, function (sprite
         .........................
         .........................
         `, SpriteKind.Minion)
-    Minions.setPosition(Final_Boss.x, Final_Boss.y)
+    Minions.setPosition(Final_Boss2.x, Final_Boss2.y)
     Minions.follow(Main_Character, 10)
     Final_Boss_Health_Status_Bar.value += -10
     if (Final_Boss_Health_Status_Bar.value <= 0) {
@@ -83,13 +83,13 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
+            . . . . . . . 4 4 . . . . . . . 
+            . . . . . . 4 4 2 4 . . . . . . 
+            . . . . . 4 4 4 4 4 4 . . . . . 
+            . . . . . 4 2 4 4 2 4 . . . . . 
+            . . . . . . 4 4 4 4 . . . . . . 
+            . . . . . . . 4 4 . . . . . . . 
             . . . . . . . . . . . . . . . . 
-            . . . 1 1 1 1 1 1 1 . . . . . . 
-            . . . 1 1 9 9 9 1 1 . . . . . . 
-            . . . . 1 b b b 1 . . . . . . . 
-            . . . . 1 1 d 1 1 . . . . . . . 
-            . . . . . 1 1 1 . . . . . . . . 
-            . . . . . . 1 . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
@@ -211,7 +211,7 @@ let Oil_Cleaner: Sprite = null
 let Oil_List: Sprite[] = []
 let Minions: Sprite = null
 let Final_Boss_Health_Status_Bar: StatusBarSprite = null
-let Final_Boss: Sprite = null
+let Final_Boss2: Sprite = null
 let Mini_Boss_Kill_Count = 0
 let Shark_Status_Bar_Health: StatusBarSprite = null
 let Torpedo: Sprite = null
@@ -243,22 +243,31 @@ game.onUpdateInterval(2000, function () {
         Random_Number = randint(0, 10)
         if (Random_Number < 5) {
             Fish = sprites.create(img`
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . c c c c . . . . 
-                . . . . . . c c d d d d c . . . 
-                . . . . . c c c c c c d c . . . 
-                . . . . c c 4 4 4 4 d c c . . . 
-                . . . c 4 d 4 4 4 4 4 1 c . c c 
-                . . c 4 4 4 1 4 4 4 4 d 1 c 4 c 
-                . c 4 4 4 4 1 4 4 4 4 4 1 c 4 c 
-                f 4 4 4 4 4 1 4 4 4 4 4 1 4 4 f 
-                f 4 4 4 f 4 1 c c 4 4 4 1 f 4 f 
-                f 4 4 4 4 4 1 4 4 f 4 4 d f 4 f 
-                . f 4 4 4 4 1 c 4 f 4 d f f f f 
-                . . f f 4 d 4 4 f f 4 c f c . . 
-                . . . . f f 4 4 4 4 c d b c . . 
-                . . . . . . f f f f d d d c . . 
-                . . . . . . . . . . c c c . . . 
+                .........................
+                .........................
+                .........................
+                .........................
+                .........................
+                .........................
+                .........................
+                .........................
+                ...........ffff.....fff..
+                ........fff4777f...ffaf..
+                ......ff4444477ff.ffaaf..
+                .....f5544444477fff555f..
+                ....f5f5544444477faaaaf..
+                ....f555544ccc477faaaaf..
+                .....f554444c477fff555f..
+                ......ff4444477ff.ffaaf..
+                ........fff4777f...ffaf..
+                ...........ffff.....fff..
+                .........................
+                .........................
+                .........................
+                .........................
+                .........................
+                .........................
+                .........................
                 `, SpriteKind.Food)
             Fish.setStayInScreen(true)
             Fish.setPosition(randint(0, scene.screenWidth()), randint(0, scene.screenHeight()))
@@ -269,13 +278,13 @@ game.onUpdateInterval(2000, function () {
                 . . . . . . . . . . . . . . . . 
                 . . . . . . . . . . . . . . . . 
                 . . . . . . . . . . . . . . . . 
-                . . . . . f f f f . . . . . . . 
                 . . . . . f f f f f . . . . . . 
+                . . . . f f f 7 f f f . . . . . 
+                . . . . f f 7 7 7 f f . . . . . 
+                . . . . f 7 7 8 7 7 f . . . . . 
+                . . . . f f 7 7 7 f f . . . . . 
+                . . . . f f f 7 f f f . . . . . 
                 . . . . . f f f f f . . . . . . 
-                . . . . . f f 7 f f f . . . . . 
-                . . . . f f f f f f f . . . . . 
-                . . . . . f f f . . . . . . . . 
-                . . . . . . f . . . . . . . . . 
                 . . . . . . . . . . . . . . . . 
                 . . . . . . . . . . . . . . . . 
                 . . . . . . . . . . . . . . . . 
