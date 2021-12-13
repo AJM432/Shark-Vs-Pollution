@@ -61,7 +61,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Final_Boss, function (sprite
         .........................
         `, SpriteKind.Minion)
     Minions.setPosition(Final_Boss2.x, Final_Boss2.y)
-    Minions.follow(Main_Character, 10)
+    Minions.setVelocity(unit_vec(Main_Character.x - Final_Boss2.x, Main_Character.y - Final_Boss2.y)[0] * 20, unit_vec(Main_Character.x - Final_Boss2.x, Main_Character.y - Final_Boss2.y)[1] * 20)
     Final_Boss_Health_Status_Bar.value += -10
     if (Final_Boss_Health_Status_Bar.value <= 0) {
         game.splash("Time:", "" + game.runtime() / 1000 + "(s)")
@@ -157,6 +157,9 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     Character_Direction = [1, 0]
     Main_Character.setImage(assets.image`Shark Right`)
 })
+function unit_vec (x_vec: number, y_vec: number) {
+    return [x_vec * (1 / Math.sqrt(x_vec ** 2 + y_vec ** 2)), y_vec * (1 / Math.sqrt(x_vec ** 2 + y_vec ** 2))]
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Minion, function (sprite, otherSprite) {
     otherSprite.destroy(effects.rings, 500)
     Shark_Status_Bar_Health.value += -5
