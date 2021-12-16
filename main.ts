@@ -241,7 +241,10 @@ Shark_Status_Bar_Health.attachToSprite(Main_Character)
 Shark_Status_Bar_Health.value = 100
 Shark_Status_Bar_Health.setStatusBarFlag(StatusBarFlag.SmoothTransition, true)
 Mini_Boss_Kill_Count = 0
-game.showLongText("PLAY", DialogLayout.Bottom)
+game.showLongText("After the climate disaster, humans have had to leave their land", DialogLayout.Bottom)
+game.showLongText("And adapt to life in the sea", DialogLayout.Bottom)
+game.showLongText("Play as a shark defending itself from these invaders", DialogLayout.Bottom)
+game.showLongText("Move over the fish for health, Shoot the landmines, and defeat the boss", DialogLayout.Bottom)
 game.onUpdateInterval(2000, function () {
     if (Playing == 1) {
         Random_Number = randint(0, 10)
